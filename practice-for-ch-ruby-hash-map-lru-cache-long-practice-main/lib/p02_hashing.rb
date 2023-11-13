@@ -4,6 +4,10 @@ end
 
 class Array
   def hash
+    total = 0
+    self.each do |el|
+      total += el.to_s(2).to_i.hash
+    end
   end
 end
 
@@ -19,3 +23,6 @@ class Hash
     0
   end
 end
+
+
+p [1, 3, 2].hash
