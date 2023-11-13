@@ -5,10 +5,11 @@ end
 class Array
   def hash
     total = 0
-    self.each do |el|
-      total += el.to_s(2).to_i.hash
+    self.each_with_index do |el, i|
+      total += el ^ i
     end
   end
+  total.to_s(2)
 end
 
 class String
