@@ -2,7 +2,7 @@ require "byebug"
 class Node
   attr_reader :key
   attr_accessor :val, :next, :prev
-  
+
   def initialize(key = nil, val = nil)
     @key = key
     @val = val
@@ -17,16 +17,12 @@ class Node
   def remove
     self.prev.next = self.next
     self.next.prev = self.prev
-    # debugger
   end
 
 end
 
 class LinkedList
-
-
   include Enumerable
-
   def initialize
     @head = Node.new
     @tail = Node.new
@@ -49,7 +45,6 @@ class LinkedList
 
   def empty?
     @head.next == @tail && @tail.prev == @head
-
   end
 
   def get(key)
@@ -68,12 +63,10 @@ class LinkedList
 
   def append(key, val)
     node = Node.new(key, val)
-    # debugger
     last.next = node
     node.next = @tail
     node.prev = last
     @tail.prev = node
-    # debugger
   end
 
   def update(key, val)
@@ -82,7 +75,6 @@ class LinkedList
         node.val = val
       end
     end
- 
   end
 
   def remove(key)
@@ -92,26 +84,19 @@ class LinkedList
         node = n
       end
     end
-    # debugger
     node.val = nil
     prev_node = node.prev
     next_node = node.next
-    # debugger
     prev_node.next = next_node
     next_node.prev = prev_node
-    # debugger
-
-    # node.remove
   end
 
   def each
     node = first
-    
     until node == @tail
       yield node
       node = node.next
     end
-
   end
 
   # uncomment when you have `each` working and `Enumerable` included
